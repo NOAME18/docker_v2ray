@@ -2,6 +2,7 @@ name: Build arm64 Image
 on: 
   release:
     types: [published]
+    
   push:                               # push 操作
     branches:                         # 分支
       - master                        # 主分支
