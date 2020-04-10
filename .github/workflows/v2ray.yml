@@ -1,0 +1,24 @@
+name: Build arm64 Image
+on: 
+  release:
+    types: [published]
+  push:                               # push 操作
+    branches:                         # 分支
+      - master                        # 主分支
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Build image job
+    steps:
+          - name: Checkout master
+            uses: actions/checkout@master
+          - name: Build and publish image    
+            uses: ilteoood/docker_buildx@master
+            with:
+              publish: true
+              imageName: noame/v2ray
+              platform: linux/arm64
+              tag: arm64
+              dockerHubUser: ${{ secrets.DOCKER_USERNAME }}
+              dockerHubPassword: ${{ secrets.DOCKER_PASSWORD }}
+              #dockerfile: docker/Dockerfile
